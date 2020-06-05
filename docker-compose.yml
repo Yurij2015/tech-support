@@ -1,0 +1,46 @@
+version: "3.7"
+services:
+  webserver_techsupport:
+    build:
+      context: './php/'
+    ports:
+      - "80:80"
+    networks:
+      - backend
+      - frontend
+    volumes:
+      - ${PROJECT_ROOT}/:/var/www/html/
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal
+    depends_on:
+      - mysql_techsupport
+    container_name: webserver_techsupport
+  mysql_techsupport:
+    image: mysql:5.7
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root3004917779
+      MYSQL_USER: yurijmo
+      MYSQL_PASSWORD: 3004917779
+      MYSQL_DATABASE: db_techsupport
+    networks:
+      - backend
+    container_name: mysql_techsupport
+  phpmyadmin_techsupport:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_techsupport
+    ports:
+      - 2323:80
+    links:
+      - mysql_techsupport:db
+    networks:
+      - backend
+networks:
+  frontend:
+  backend:
+volumes:
+  data:
