@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Admin Panel | Maps</title>
+  <title>Admin Panel | TechSupport</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -40,7 +40,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a href="index.php" class="nav-link">Главная</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="support-admin.php" class="nav-link active">Достопримечательности</a>
+        <a href="support-admin.php" class="nav-link active">Техническая поддержка</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="user-admin.php" class="nav-link">Пользователи</a>
@@ -93,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="support-admin.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Объекты в БД</p>
+                  <p>Заявки на техподдержку</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -124,7 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Достопримечательности в базе данных</h1>
+            <h1 class="m-0 text-dark">Заявки на техническую поддержку</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

@@ -40,7 +40,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a href="index.html" class="nav-link">Главная</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="support-admin.php" class="nav-link">Достопримечательности</a>
+        <a href="support-admin.php" class="nav-link">Заявки на техническую поддержку</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="user-admin.php" class="nav-link">Пользователи</a>
@@ -93,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="support-admin.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Объекты в БД</p>
+                  <p>Заявки на техподдержку</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -128,8 +128,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Главная</a></li>
-              <li class="breadcrumb-item active">Объекты в базе данных</li>
+              <li class="breadcrumb-item"><a href="/admin">Главная</a></li>
+              <li class="breadcrumb-item active">Заявки на техподдержку</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -151,6 +151,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <th>№</th>
                     <th>Вопрос</th>
                     <th>Пользователь</th>
+                    <th>Статус</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -160,10 +161,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   $supports = R::getAll('SELECT * FROM support ORDER BY question');
                   foreach ($supports as $support) {
                     $id = $support['id'];
+                    switch ($support['status']) {
+                      case 1:
+                        $value = "active";
+                        $style = "text-primary";
+                        break;
+                      case 2:
+                        $value = "in process";
+                        $style = "text-success";
+                        break;
+                      case 0:
+                        $value = "inactive";
+                        $style = "text-danger";
+                        break;
+                    }
                     echo "<tr>
                         <td>" . $id . "</td>
-                        <td>" . $support['question'] . "</td>
-                        <td>" . $support['username'] . "</td>                  
+                        <td style='width: 70%;'>" . $support['question'] . "</td>
+                        <td>" . $support['username'] . "</td>   
+                        <td class='" . $style . "' style='width: 20%; text-transform: uppercase; font-weight: bold;'>" . $value . "</td>                  
+               
                       </tr>";
                   }
                   ?>

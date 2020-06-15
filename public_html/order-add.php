@@ -47,14 +47,13 @@ session_start();
             <h3>Добавить заявку </h3>
             <hr>
             <?php
-            if (!empty($_SESSION['email'])) {
+//            if (!empty($_SESSION['email'])) {
                 ?>
 
                 <form method="post">
                     <div class="form-group">
                         <label for="review">Текст запроса:</label>
-                        <input class="form-control" id="review" type="text" name="review"
-                               placeholder="Введите текст">
+                        <textarea class="form-control" id="review" name="review"></textarea>
                         <input hidden name="username" value="<?= $_SESSION['email'] ?>">
                     </div>
                     <input type="submit" class="btn btn-primary btn-sm" value="Сохранить">
@@ -62,9 +61,9 @@ session_start();
                 </form>
 
                 <?php
-            } else {
-                echo "<p class='lead'> Вы не можете оставить отзыв. Войдите на сайт! </p>";
-            }
+//            } else {
+//                echo "<p class='lead'> Вы не можете оставить отзыв. Войдите на сайт! </p>";
+//            }
             ?>
 
 
