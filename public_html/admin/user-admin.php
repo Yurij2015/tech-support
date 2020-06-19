@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Admin Panel | Maps</title>
+  <title>Admin Panel | Пользователи системы</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -40,7 +40,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a href="index.php" class="nav-link">Главная</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="support-admin.php" class="nav-link">Достопримечательности</a>
+        <a href="support-admin.php" class="nav-link">Заявки на техподдержку</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="user-admin.php" class="nav-link active">Пользователи</a>
@@ -93,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="support-admin.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Объекты в БД</p>
+                  <p>Заявки на техподдержку</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -144,15 +144,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Список пользователей</h5>
-                <a href="support-create.php" target="_blank" class="btn btn-outline-primary float-right">Добавить запись</a>
+                <h5 class="card-title">Список пользователей (Логины пользователей)</h5>
                 <table class="table table-hover">
                   <thead>
                   <tr>
                     <th>№</th>
                     <th>Наименование</th>
-                    <th>Широта</th>
-                    <th>Долгота</th>
                     <th>Дата входа</th>
                   </tr>
                   </thead>
@@ -166,11 +163,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     echo "<tr>
                         <td>" . $id . "</td>
                         <td>" . $marker['email'] . "</td>
-                        <td>" . $marker['lat'] . "</td>
-                        <td>" . $marker['long'] . "</td>
                         <td>" . $marker['datetime'] . "</td>
-                  
-                      </tr>";
+                        </tr>";
                   }
                   ?>
                   </tbody>

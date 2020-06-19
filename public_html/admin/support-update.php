@@ -8,12 +8,10 @@ require_once("../RedBeanPHP5_4_2/rb.php");
 R::setup('mysql:host=mysql_techsupport;port=3306;dbname=db_techsupport', 'root', 'root3004917779');
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
-  $markers = R::load('markers', $id);
-  $name = $markers->name;
-  $address = $markers->address;
-  $lat = $markers->lat;
-  $lng = $markers->lng;
-  $type = $markers->type;
+  $support = R::load('support', $id);
+  $question = $support->question;
+  $username = $support->username;
+  $status = $support->status;
 }
 
 ?>
@@ -28,7 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Admin Panel | Maps</title>
+  <title>Admin Panel | Техническая поддержка</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -51,7 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a href="index.php" class="nav-link">Главная</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="support-admin.php" class="nav-link active">Достопримечательности</a>
+        <a href="support-admin.php" class="nav-link active">Заявки на техническую поддержку</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="user-admin.php" class="nav-link">Пользователи</a>
@@ -104,7 +102,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="support-admin.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Объекты в БД</p>
+                  <p>Заявки на техническую поддержку</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -140,9 +138,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="index.php">Главная</a></li>
-              <li class="breadcrumb-item active"><a href="support-admin.php">Объекты в базе данных</a>
+              <li class="breadcrumb-item active"><a href="support-admin.php">Заявки</a>
               </li>
-              <li class="breadcrumb-item active">Добавить запись</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -159,37 +156,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="card-body">
                 <form method="post" action="handler-update-support.php">
                   <div class="form-group">
-                    <label for="name">Название</label>
-                    <input type="text" class="form-control" name="name" id="name" value="<?= $name ?>">
+                    <label for="question">Вопрос</label>
+                    <input type="text" class="form-control" name="question" id="question"
+                           value="<?= $question ?>">
                   </div>
                   <div class="form-group">
-                    <label for="address">Адрес</label>
-                    <input type="text" class="form-control" name="address" id="address" value="<?= $address ?>">
-                  </div>
-                  <div class="form-group">
-                    <label for="lat">Широта</label>
-                    <input type="number" step="any" class="form-control" name="lat" id="lat" value="<?= $lat ?>">
-                  </div>
-                  <div class="form-group">
-                    <label for="lng">Долгота</label>
-                    <input type="number" step="any" class="form-control" name="lng" id="lng" value="<?= $lng ?>">
+                    <label for="username">Пользователь</label>
+                    <input type="text" class="form-control" name="username" id="username"
+                           value="<?= $username ?>">
                   </div>
                   <input hidden name="id" value="<?= $id ?>">
                   <div class="form-group">
-                    <label for="type">Тип</label>
-                    <select type="text" class="form-control" name="type" id="type">
-                      <option value="<?= $type ?>"><?= $type ?></option>
-                      <option value="aquarium">Акваримуы</option>
-                      <option value="art_gallery">Арт-галлереи</option>
-                      <option value="church">Церкви</option>
-                      <option value="city_hall">Ратуша</option>
-                      <option value="amusement_park">Парк с атракционами</option>
-                      <option value="museum">Музеи</option>
-                      <option value="synagogue">Синагога</option>
-                      <option value="tourist_attraction">Туристические достопримечательности</option>
+                    <label for="status">Статус заявки</label>
+                    <select type="text" class="form-control" name="status" id="status">
+                      <option value=1>active</option>
+                      <option value=2>in process</option>
+                      <option value=3>inactive</option>
                     </select>
                   </div>
-                  <button type="submit" class="btn btn-success">Сохранить запись</button>
+                  <button type="submit" class="btn btn-success">Сохранить</button>
                   <a href="support-admin.php" class="btn btn-info">Назад</a>
                 </form>
               </div>

@@ -10,4 +10,4 @@ require_once 'Session.php';
 
 Session::destroy();
 
-header('Location: index.php?msg=Вы вышли!');
+header('Location: login.php?msg=Вы вышли!');

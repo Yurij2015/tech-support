@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Admin Panel | Maps</title>
+  <title>Admin Panel | Запросы на техподдержку</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -144,6 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
+                <a href="report.php" target="_blank" class="btn btn-primary float-right">Сформировать отчет</a>
                 <h5 class="card-title">Список заявок на поддержку</h5>
                 <table class="table table-hover">
                   <thead>
@@ -151,14 +152,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <th>№</th>
                     <th>Вопрос</th>
                     <th>Пользователь</th>
+                    <th>Дата заявки</th>
                     <th>Статус</th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
                   <?php
                   require_once("../RedBeanPHP5_4_2/rb.php");
                   R::setup('mysql:host=mysql_techsupport;port=3306;dbname=db_techsupport', 'root', 'root3004917779');
-                  $supports = R::getAll('SELECT * FROM support ORDER BY question');
+                  $supports = R::getAll('SELECT * FROM support');
                   foreach ($supports as $support) {
                     $id = $support['id'];
                     switch ($support['status']) {
@@ -170,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         $value = "in process";
                         $style = "text-success";
                         break;
-                      case 0:
+                      case 3:
                         $value = "inactive";
                         $style = "text-danger";
                         break;
@@ -178,9 +181,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     echo "<tr>
                         <td>" . $id . "</td>
                         <td style='width: 70%;'>" . $support['question'] . "</td>
-                        <td>" . $support['username'] . "</td>   
-                        <td class='" . $style . "' style='width: 20%; text-transform: uppercase; font-weight: bold;'>" . $value . "</td>                  
-               
+                        <td>" . $support['username'] . "</td>  
+                        <td>" . $support['dateoforder'] . "</td>   
+                         <td class='" . $style . "' style='width: 20%; text-transform: uppercase; font-weight: bold;'>" . $value . "</td>                  <td><a href='support-update.php?id=$id'>Редактировать</a>|<a href='support-delete.php?id=$id' onclick='return confirmDelete();'>Удалить</a></td>
                       </tr>";
                   }
                   ?>

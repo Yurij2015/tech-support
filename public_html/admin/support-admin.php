@@ -97,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="user-admin.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Пользователи</p>
                 </a>
@@ -129,14 +129,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="index.php">Главная</a></li>
-              <li class="breadcrumb-item active">Объекты в базе данных</li>
+              <li class="breadcrumb-item active">Заявки</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
@@ -144,15 +143,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Список достопримечательностей</h5>
-                <a href="support-create.php" target="_blank" class="btn btn-outline-primary float-right">Добавить запись</a>
+                <h5 class="card-title">Список заявок на техподдержку</h5>
                 <table class="table table-hover">
                   <thead>
                   <tr>
                     <th>№</th>
                     <th>Вопрос</th>
                     <th>Пользователь</th>
-                    <th>Ответ</th>
+                    <th>Дата заявки</th>
                     <th></th>
                   </tr>
                   </thead>
@@ -160,15 +158,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <?php
                   require_once("../RedBeanPHP5_4_2/rb.php");
                   R::setup('mysql:host=mysql_techsupport;port=3306;dbname=db_techsupport', 'root', 'root3004917779');
-                  $supports = R::getAll('SELECT * FROM support ORDER BY question');
+                  $supports = R::getAll('SELECT * FROM support');
                   foreach ($supports as $support) {
                     $id = $support['id'];
                     echo "<tr>
                         <td>" . $id . "</td>
                         <td>" . $support['question'] . "</td>
                         <td>" . $support['username'] . "</td>
-                        <td></td> 
-                        <td><a href='attraction-update.php?id=$id'>Edit</a>|<a href='attraction-delete.php?id=$id' onclick='return confirmDelete();'>Delete</a></td>
+                        <td>" . $support['dateoforder'] . "</td>   
+                        <td><a href='support-update.php?id=$id'>Редактировать</a>|<a href='support-delete.php?id=$id' onclick='return confirmDelete();'>Удалить</a></td>
                       </tr>";
                   }
                   ?>

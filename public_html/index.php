@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['email'])) {
+    header('location: login.php');
+}
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -11,7 +17,7 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/system/">TechSupport</a>
+        <a class="navbar-brand" href="/">TechSupport</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
                 aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,10 +47,11 @@
                 $supports = R::getAll('SELECT * FROM support ORDER BY question');
                 foreach ($supports as $support) {
                     $id = $support['id'];
+
                     echo "<tr>
                         <td>" . $id . "</td>
                         <td>" . $support['question'] . "</td>
-                        <td>" . $support['username'] . "</td>                  
+                        <td>" . $support['username'] . "</td>   
                       </tr>";
                 }
                 ?>

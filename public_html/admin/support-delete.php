@@ -4,8 +4,8 @@ R::setup('mysql:host=mysql_techsupport;port=3306;dbname=db_techsupport', 'root',
 try {
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $markers= R::load('markers', $id);
-        R::trash($markers);
+        $support= R::load('support', $id);
+        R::trash($support);
         header('location: /admin/support-admin.php?msg=Запись успешно удалена!');
     }
 } catch (exception $e) {

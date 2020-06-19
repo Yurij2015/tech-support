@@ -18,7 +18,7 @@ if ( $_POST ) {
 		$email = $db->escape( $form->getEmail() );
 		$password = new Password( $db->escape( $form->getPassword() ) );
 
-		$res = $db->query( "SELECT * FROM user WHERE email = '{$email}' AND password = '{$password}' LIMIT 1" );
+		$res = $db->query( "SELECT * FROM users WHERE email = '{$email}' AND password = '{$password}' LIMIT 1" );
 		if ( ! $res ) {
 			$msg = 'No such user found';
 		} else {

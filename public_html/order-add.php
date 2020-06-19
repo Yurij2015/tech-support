@@ -1,17 +1,14 @@
 <?php
 if ($_POST) {
-    $review = trim(htmlspecialchars($_POST['review']));
-    $place = $_POST['place'];
     $username = $_POST['username'];
-
+    $question = htmlspecialchars($_POST['question']);
     require_once("RedBeanPHP5_4_2/rb.php");
     R::setup('mysql:host=mysql_techsupport;port=3306;dbname=db_techsupport', 'root', 'root3004917779');
-    $reviews = R::dispense('reviews');
-    $reviews->review = $review;
-    $reviews->place = $place;
-    $reviews->username = $username;
-    R::store($reviews);
-    header('location: index.php?msg=Запись успешно добавлена!');
+    $support = R::dispense('support');
+    $support->question = $question;
+    $support->username = $username;
+    R::store($support);
+    header('location: personalarea.php?msg=Запись успешно добавлена!');
 }
 ?>
 <?php
@@ -52,8 +49,8 @@ session_start();
 
                 <form method="post">
                     <div class="form-group">
-                        <label for="review">Текст запроса:</label>
-                        <textarea class="form-control" id="review" name="review"></textarea>
+                        <label for="question">Текст запроса:</label>
+                        <textarea class="form-control" id="question" name="question"></textarea>
                         <input hidden name="username" value="<?= $_SESSION['email'] ?>">
                     </div>
                     <input type="submit" class="btn btn-primary btn-sm" value="Сохранить">

@@ -26,7 +26,7 @@ if ($_POST) {
             $msg = 'Пользователь с таким эл. адресом уже существует!';
         } else {
             $db->query("INSERT INTO `users` (email, username, usersecondname, password) VALUES ('{$email}','{$username}', '{$usersecondname}','{$password}')");
-            header('location: index.php?msg=Регистрация прошла успешно!');
+            header('location: login.php?msg=Регистрация прошла успешно!');
         }
 
     } else {
